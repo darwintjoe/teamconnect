@@ -1,0 +1,21 @@
+{
+  "rewrites": [
+    { "source": "/join/:code", "destination": "/index.html" },
+    { "source": "/invite/:code", "destination": "/index.html" },
+    { "source": "/admin/:path*", "destination": "/index.html" },
+    { "source": "/groups/:path*", "destination": "/index.html" },
+    { "source": "/profile/groups", "destination": "/index.html" },
+    { "source": "/((?!assets|favicon|icon|manifest|sw).+)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

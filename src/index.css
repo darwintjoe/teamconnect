@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Facebook-like color palette */
+    --background: 220 14% 96%; /* #F2F4F7 */
+    --foreground: 0 0% 2%; /* #050505 */
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 0 0% 2%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 2%;
+    --primary: 214 89% 52%; /* #1877F2 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 9% 46%; /* #65676B */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 214 89% 52%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 355 82% 61%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 87%; /* #DADDE1 */
+    --input: 220 13% 87%;
+    --ring: 214 89% 52%;
+    --radius: 0.75rem;
+    
+    /* Custom colors */
+    --fb-blue: #1877F2;
+    --fb-gray-bg: #F2F4F7;
+    --fb-gray-text: #65676B;
+    --fb-black: #050505;
+    --fb-border: #DADDE1;
+    --fb-green: #42B72A;
+    --fb-red: #FA383E;
+    --fb-light-gray: #F0F2F5;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    background-color: var(--fb-gray-bg);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Safe area for mobile */
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  
+  /* Touch target size */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Animation utilities */
+  .animate-like {
+    animation: like-bounce 150ms ease-out;
+  }
+  
+  @keyframes like-bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+    100% { transform: scale(1); }
+  }
+  
+  .animate-fade-up {
+    animation: fade-up 200ms ease-out;
+  }
+  
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-slide-in {
+    animation: slide-in 200ms ease-out;
+  }
+  
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Photo grid layouts */
+.photo-grid-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+  aspect-ratio: 16/10;
+}
+
+.photo-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  aspect-ratio: 2/1;
+}
+
+.photo-grid-3 {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  aspect-ratio: 16/10;
+}
+
+.photo-grid-3 > :first-child {
+  grid-row: 1 / -1;
+}
+
+.photo-grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2px;
+  aspect-ratio: 1/1;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
